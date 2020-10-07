@@ -1,3 +1,45 @@
 .App {
   text-align: center;
 }
+
+#transactions-container{
+  display: grid;
+  justify-content: center;
+  margin-top: 3vh;
+  position: static;
+}
+
+.transaction-card {
+  display: grid;
+  grid-template-columns: 10% 30% 30% 20%;
+  padding: 1vh;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  width: 40vw;
+  align-items: center;
+  font-weight: 450;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#operations-card {
+  padding-top: 1vh;
+  margin: auto;
+  margin-top: 10vh;
+  width: 20vw;
+  height: 50vh;
+  box-shadow: 1px 1px 3px rgb(97, 96, 96);
+  display: grid;
+}
+
+#withdraw-button {
+  color:rgb(248, 62, 102);
+}
+
+#operations-buttons {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
