@@ -54,21 +54,23 @@ class App extends Component {
   render() {
       return (
         <Router>
-          <Grid container>
+          <Grid container xs={12} className='App'>
 
-            <Header handleMenu={this.handleMenu}/>
+            <div className="head">
+              <Header handleMenu={this.handleMenu}/>
 
-            <Menu handleMenu={this.handleMenu} open={this.state.open}/>
+              <Menu handleMenu={this.handleMenu} open={this.state.open}/>
+            </div>
 
             <Route path='/' 
                   exact render={({ match }) => 
-                    <Transactions key='transactions' 
-                      match={match} transactions={this.state.transactions} 
-                      handleDeleteTransaction={this.handleDeleteTransaction}/>}/>
+                  <Transactions key='transactions' 
+                  match={match} transactions={this.state.transactions} 
+                  handleDeleteTransaction={this.handleDeleteTransaction}/>}/>
 
             <Route path='/operations'  
                 exact render={({ match }) => 
-                  <Operations key='operations' match={match} handleTransaction={this.handleTransaction}/>}/>
+                <Operations key='operations' match={match} handleTransaction={this.handleTransaction}/>}/>
 
             <Footer balance={this.getBalance()} />
 

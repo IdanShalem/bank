@@ -5,7 +5,7 @@ import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/sty
 const styles = theme => ({
     footer: {
       top: 'auto',
-      bottom: 0,
+      bottom: 0
     }
   })
 
@@ -35,7 +35,7 @@ class Footer extends Component {
                 <AppBar className={classes.footer} position="fixed" color="secondary">
                     <Toolbar>
                         <Typography variant="h6" color="inherit" >
-                        Balance: {this.props.balance}$
+                          Balance: {this.props.balance}$
                         </Typography>
                     </Toolbar>
                 </AppBar>

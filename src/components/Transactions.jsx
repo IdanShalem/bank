@@ -7,7 +7,7 @@ class Transactions extends Component {
     render() {
         const transactions = this.props.transactions
         return (
-            <Grid item xs={12} id="transactions-container" justify="center" align="center">
+            <Grid item xs={12} id="transactions-container" direction="column" justify="center" align="center">
                 {transactions
                     .map(t => 
                         <Transaction 

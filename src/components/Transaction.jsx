@@ -12,6 +12,9 @@ const styles = theme => ({
     root: {
       marginTop: theme.spacing.unit * 2
     },
+    items: {
+        display: 'inline-block'
+    }
   })
 
 class ComponentName extends Component {
@@ -25,30 +28,32 @@ class ComponentName extends Component {
         const t = this.props.transaction
 
         return (
-            <Grid item xs={6} 
+            <Grid item xs={5} 
                 className={`${classes.root} transaction-card`}
                     style={t.amount > 0 
                         ? {backgroundColor: "#b9f6ca"} 
                         : {backgroundColor: '#ffcdd2'}}>
-                        <Tooltip title="Delete" >
-                            <IconButton aria-label="Delete" xs={6}>
-                                <DeleteIcon onClick={this.handleDeleteTransaction}></DeleteIcon>
-                            </IconButton>
-                        </Tooltip>
-                        <Typography variant="span" component="span" xs={6}>
-                            {t.category} 
-                        </Typography>
-                        <Typography variant="span" component="span">
-                            {t.vendor} 
-                        </Typography>
-                        <Typography variant="span"
-                        
-                            component="span" 
-                            style={t.amount > 0 
-                                ? {color: "#1b5e20"} 
-                                : {color: '#d50000'}}>
-                            {t.amount.toString().replace('-','')} $ 
-                        </Typography>
+                    <Tooltip title="Delete">
+                        <IconButton aria-label="Delete">
+                            <DeleteIcon onClick={this.handleDeleteTransaction}></DeleteIcon>
+                        </IconButton>
+                    </Tooltip>
+
+                    <Typography variant="span" component="span" xs={6}>
+                        {t.category} 
+                    </Typography>
+
+                    <Typography variant="span" component="span">
+                        {t.vendor} 
+                    </Typography>
+
+                    <Typography variant="span"
+                        component="span" 
+                        style={t.amount > 0 
+                            ? {color: "#1b5e20"} 
+                            : {color: '#d50000'}}>
+                        {t.amount.toString().replace('-','')} $ 
+                    </Typography>
             </Grid>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Grid } from '@material-ui/core';
 import { Menu as MenuIcon, AccountCircle} from '@material-ui/icons';
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -36,7 +36,7 @@ class Header extends Component {
 
         return (
             <ThemeProvider theme={theme}>
-                <AppBar position="relative" color="primary">
+                <AppBar color="primary" position="fixed">
                     <Toolbar>
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer" onClick={this.handleMenu}>
                             <MenuIcon />
