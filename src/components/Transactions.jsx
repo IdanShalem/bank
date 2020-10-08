@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import Transaction from './Transaction'
+import Grid from '@material-ui/core/Grid';
 
 class Transactions extends Component {
 
     render() {
         const transactions = this.props.transactions
         return (
-            <div id="transactions-container">
+            <Grid item xs={12} id="transactions-container" justify="center" align="center">
                 {transactions
                     .map(t => 
                         <Transaction 
                         key={t.id} transaction={t} 
                         handleDeleteTransaction={this.props.handleDeleteTransaction}/>)}
-            </div>
+            </Grid>
         );
     }
 }
