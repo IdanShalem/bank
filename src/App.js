@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Breakdown from './components/Breakdown';
 
 const axios = require('axios')
 
@@ -63,14 +64,18 @@ class App extends Component {
             </div>
 
             <Route path='/' 
-                  exact render={({ match }) => 
+                  exact render={({ }) => 
                   <Transactions key='transactions' 
-                  match={match} transactions={this.state.transactions} 
-                  handleDeleteTransaction={this.handleDeleteTransaction}/>}/>
+                    transactions={this.state.transactions} 
+                    handleDeleteTransaction={this.handleDeleteTransaction}/>}/>
 
             <Route path='/operations'  
-                exact render={({ match }) => 
-                <Operations key='operations' match={match} handleTransaction={this.handleTransaction}/>}/>
+                exact render={({ }) => 
+                <Operations key='operations' handleTransaction={this.handleTransaction}/>}/>
+            
+            <Route path='/breakdown'  
+                exact render={({ }) => 
+                <Breakdown key='operations' transactions={this.state.transactions} />}/>
 
             <Footer balance={this.getBalance()} />
 
