@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "elevation-pr": "^1.4.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.8",
     "react": "^16.13.1",
@@ -20,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "review": "node node_modules/elevation-pr/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
