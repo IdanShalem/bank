@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import {Redirect} from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
@@ -16,19 +17,22 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = {
     card: {
-      minWidth: 275,
+      paddingTop: '1vh',
+      margin: 'auto',
+      marginTop: '10vh',
+      width: '25vw',
+      height: '55vh',
+      boxShadow: '1px 1px 3px rgb(97, 96, 96)'
     },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+    input: {
+      width: '100%'
     },
-    title: {
-      fontSize: 14,
+    cardElem: {
+      marginTop: '5px',
     },
-    pos: {
-      marginBottom: 12,
-    },
+    cardActions: {
+      marginTop: '25px'
+    }
   };
 
 class ComponentName extends Component {
@@ -46,7 +50,11 @@ class ComponentName extends Component {
     }
 
     handleClickOpen = (e) => {
-        this.setState({ open: true , action: e.target.innerHTML});
+      if(this.state.amount && this.state.vendor && this.state.category) {
+        this.setState({ open: true , action: e.target.innerHTML})
+      } else {
+        alert('Some of the areas are blank!')
+      }
     }
 
     handleClose = () => {
@@ -62,18 +70,14 @@ class ComponentName extends Component {
     captilizeString = (str) => str[0].toUpperCase() + str.slice(1).toLowerCase()
 
     handleTransaction = () => {
-        if(this.state.amount && this.state.vendor && this.state.category) {
-            let amount = parseInt(this.state.amount)
-            if(this.state.action === 'Withdraw') {
-                amount *= -1
-            } 
-            const   vendor      = this.captilizeString(this.state.vendor),
-                    category    = this.captilizeString(this.state.category)
-            this.props.handleTransaction(amount, vendor, category)
-            this.setState({ done: true })
-        } else {
-            alert('Some of the areas are blank!')
-        }
+      let amount = parseInt(this.state.amount)
+      if(this.state.action === 'Withdraw') {
+          amount *= -1
+      } 
+      const   vendor      = this.captilizeString(this.state.vendor),
+              category    = this.captilizeString(this.state.category)
+      this.props.handleTransaction(amount, vendor, category)
+      this.setState({ done: true })
     }
 
     render() {
@@ -81,27 +85,45 @@ class ComponentName extends Component {
 
         return (
           <Fragment>
-            <Grid>
               <Card id="operations-card" className={classes.card}>
-                  <Typography variant="h6" color="inherit">
-                      Operation
-                  </Typography>
-                  <Typography variant="body2" color="inherit">
-                      Please fill your operation details here
-                  </Typography>
-                  <CardContent>
-                      <TextField id="amount-input" type="number"  
-                          name="amount" value={this.state.amount} onChange={this.handleChange} placeholder='Amount...'/>
+                <Grid item xs={12} container justify='center' alignItems='center' direction='column'>
+                  <CardHeader 
+                    className={classes.cardElem} 
+                    color="inherit" 
+                    title="Operation"
+                    subheader='Please fill your operation details here'
+                  />
+                  <CardContent className={classes.cardElem}>
+                      <TextField 
+                        className={classes.input} 
+                        type="number"  
+                        name="amount" 
+                        value={this.state.amount} 
+                        onChange={this.handleChange} 
+                        placeholder='Amount...'
+                      />
                   </CardContent>
-                  <CardContent>
-                      <TextField id="vendor-input" type="text" 
-                          name="vendor" value={this.state.vendor} onChange={this.handleChange} placeholder='Vendor...'/>
+                  <CardContent className={classes.cardElem}>
+                      <TextField 
+                        className={classes.input} 
+                        type="text" 
+                        name="vendor" 
+                        value={this.state.vendor} 
+                        onChange={this.handleChange} 
+                        placeholder='Vendor...'
+                      />
                   </CardContent>
-                  <CardContent>
-                      <TextField id="category-input" type="text" 
-                          name="category" value={this.state.category} onChange={this.handleChange} placeholder='Category...'/>
+                  <CardContent className={classes.cardElem}>
+                      <TextField 
+                      className={classes.input} 
+                      type="text" 
+                      name="category" 
+                      value={this.state.category} 
+                      onChange={this.handleChange} 
+                      placeholder='Category...'
+                    />
                   </CardContent>
-                  <CardActions id="operations-buttons">
+                  <CardActions id="operations-buttons" className={classes.cardActions}>
                       <Button size="small" color="primary" onClick={this.handleClickOpen}>
                           Deposit
                       </Button>
@@ -109,8 +131,9 @@ class ComponentName extends Component {
                           Withdraw
                       </Button>
                   </CardActions>
+                </Grid>
               </Card>
-              </Grid>
+              
               <Dialog
               open={this.state.open}
               onClose={this.handleClose}

@@ -6,11 +6,20 @@ import Header from './components/Header'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import './App.css';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Breakdown from './components/Breakdown';
 
 const axios = require('axios')
+
+const styles = theme => ({
+  head: {
+      marginBottom: '70px'
+  },
+  body: {
+    marginBottom: '90px'
+  }
+})
 
 class App extends Component {
 
@@ -53,30 +62,34 @@ class App extends Component {
   }
 
   render() {
+
+    const { classes } = this.props
+
       return (
         <Router>
-          <Grid container xs={12} className='App'>
+          <Grid container className='App'>
 
-            <div className="head">
+            <Grid item xs={12} className={classes.head} container>
               <Header handleMenu={this.handleMenu}/>
 
               <Menu handleMenu={this.handleMenu} open={this.state.open}/>
-            </div>
+            </Grid>
 
-            <Route path='/' 
+            <Grid item xs={12} className={classes.body} direction='column' alignItems='center' container>
+              <Route path='/' 
+                    exact render={({ }) => 
+                    <Transactions key='transactions' 
+                      transactions={this.state.transactions} 
+                      handleDeleteTransaction={this.handleDeleteTransaction}/>}/>
+
+              <Route path='/operations'  
                   exact render={({ }) => 
-                  <Transactions key='transactions' 
-                    transactions={this.state.transactions} 
-                    handleDeleteTransaction={this.handleDeleteTransaction}/>}/>
-
-            <Route path='/operations'  
-                exact render={({ }) => 
-                <Operations key='operations' handleTransaction={this.handleTransaction}/>}/>
-            
-            <Route path='/breakdown'  
-                exact render={({ }) => 
-                <Breakdown key='operations' transactions={this.state.transactions} />}/>
-
+                  <Operations key='operations' handleTransaction={this.handleTransaction}/>}/>
+              
+              <Route path='/breakdown'  
+                  exact render={({ }) => 
+                  <Breakdown key='operations' transactions={this.state.transactions} />}/>
+            </Grid>
             <Footer balance={this.getBalance()} />
 
           </Grid>
@@ -85,4 +98,4 @@ class App extends Component {
   }
 }
 
-export default (App);
+export default withStyles(styles)(App);

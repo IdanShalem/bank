@@ -3,60 +3,80 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
-    root: {
+    cardContainer: {
       marginTop: theme.spacing.unit * 2
     },
-    items: {
-        display: 'inline-block'
+    card:{
+        width: '100%',
+        padding: '5px',
+        '&:hover': {
+            boxShadow: '0px 0px 8px black'
+        }
+    },
+    positive: {
+        backgroundColor: '#b9f6ca',
+        color: "#1b5e20",
+    },
+    negative: {
+        backgroundColor: '#ffcdd2',
+        color: '#d50000'
     }
   })
 
-class ComponentName extends Component {
+class Transaction extends Component {
 
     handleDeleteTransaction = (e) => {
         this.props.handleDeleteTransaction(this.props.transaction._id)
     }
 
     render() {
+
         const { classes } = this.props
         const t = this.props.transaction
 
         return (
-            <Grid item xs={5} 
-                className={`${classes.root} transaction-card`}
-                    style={t.amount > 0 
-                        ? {backgroundColor: "#b9f6ca"} 
-                        : {backgroundColor: '#ffcdd2'}}>
-                    <Tooltip title="Delete">
-                        <IconButton aria-label="Delete">
-                            <DeleteIcon onClick={this.handleDeleteTransaction}></DeleteIcon>
-                        </IconButton>
-                    </Tooltip>
-
-                    <Typography variant="span" component="span" xs={6}>
-                        {t.category} 
-                    </Typography>
-
-                    <Typography variant="span" component="span">
-                        {t.vendor} 
-                    </Typography>
-
-                    <Typography variant="span"
-                        component="span" 
-                        style={t.amount > 0 
-                            ? {color: "#1b5e20"} 
-                            : {color: '#d50000'}}>
-                        {t.amount.toString().replace('-','')} $ 
-                    </Typography>
+            <Grid 
+                item 
+                xs={6} 
+                className={classes.cardContainer}
+                container
+            >
+                <Card className={`${classes.card} ${t.amount > 0 ? classes.positive : classes.negative}`} >
+                    <Grid 
+                        item 
+                        xs={12} 
+                        alignItems='center'
+                        container
+                    >
+                        <Grid item xs={3} >
+                            <IconButton aria-label="Delete" onClick={this.handleDeleteTransaction}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={3} >
+                            <Typography variant="subtitle1" color="textSecondary" >
+                                {t.category} 
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={3} >
+                            <Typography variant="subtitle1" color="textSecondary" >
+                                {t.vendor} 
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={3} >
+                            <Typography variant="body1">
+                                $ {t.amount.toString().replace('-','')} 
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Card>
             </Grid>
         );
     }
 }
 
-export default  withStyles(styles)(ComponentName);
+export default  withStyles(styles)(Transaction);

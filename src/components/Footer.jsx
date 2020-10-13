@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton, Grid } from '@material-ui/core';
 import { withStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const styles = theme => ({
     footer: {
       top: 'auto',
-      bottom: 0
+      bottom: 0,
     }
   })
 
@@ -28,17 +28,17 @@ class Footer extends Component {
     
     render() {
 
-        const { classes } =this.props 
+        const { classes, balance } =this.props 
 
         return (
             <ThemeProvider theme={theme}>
-                <AppBar className={classes.footer} position="fixed" color="secondary">
-                    <Toolbar>
-                        <Typography variant="h6" color="inherit" >
-                          Balance: {this.props.balance}$
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+              <AppBar className={classes.footer} position="fixed" color="secondary">
+                  <Toolbar>
+                      <Typography variant="h6" color="inherit" >
+                        Balance: $ {balance}
+                      </Typography>
+                  </Toolbar>
+              </AppBar>
             </ThemeProvider>
         );
     }

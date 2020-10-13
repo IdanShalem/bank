@@ -46,7 +46,7 @@ class Header extends Component {
                             Money-Tracker
                         </Typography>
                         <AccountCircle /> 
-                        Idan Shalem
+                        &ensp; Idan Shalem
                     </Toolbar>
                 </AppBar>
             </ThemeProvider>

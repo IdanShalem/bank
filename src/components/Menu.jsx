@@ -25,7 +25,7 @@ const styles = theme => ({
       padding: '0 8px',
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
-    },
+    }
   });
 
 class Menu extends Component {
@@ -61,12 +61,14 @@ class Menu extends Component {
                       <ListItemText primary={'Operations'} />
                     </ListItem>
                   </Link>  
-                  <ListItem button key={'Breakdown'} onClick={this.handleMenu}>
-                    <ListItemIcon>
-                      <PieChartIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Breakdown'} />
-                  </ListItem>
+                  <Link to="/breakdown">
+                    <ListItem button key={'Breakdown'} onClick={this.handleMenu}>
+                      <ListItemIcon>
+                        <PieChartIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={'Breakdown'} />
+                    </ListItem>
+                  </Link>
                 </List>
               <Divider />
               <List>
