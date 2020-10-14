@@ -8,9 +8,7 @@ a {
 }
 
 #withdraw-button {
-  color:rgb(248, 62, 102);
+  background-color:rgb(248, 62, 102);
+  color: white
 }
 
-#withdraw-button:hover {
-  background-color:rgb(252, 246, 247)
-}

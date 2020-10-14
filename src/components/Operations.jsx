@@ -32,6 +32,9 @@ const styles = {
     },
     cardActions: {
       marginTop: '25px'
+    },
+    buttons: {
+      width: '100%'
     }
   };
 
@@ -124,10 +127,10 @@ class ComponentName extends Component {
                     />
                   </CardContent>
                   <CardActions id="operations-buttons" className={classes.cardActions}>
-                      <Button size="small" color="primary" onClick={this.handleClickOpen}>
+                      <Button className={classes.buttons} variant="contained" color="primary" onClick={this.handleClickOpen}>
                           Deposit
                       </Button>
-                      <Button id="withdraw-button" size="small" onClick={this.handleClickOpen}>
+                      <Button id="withdraw-button" className={classes.buttons} variant="contained" onClick={this.handleClickOpen}>
                           Withdraw
                       </Button>
                   </CardActions>
