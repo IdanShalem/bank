@@ -16,12 +16,11 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 
 const styles = {
+    root: {
+      marginTop: '30px'
+    },
     card: {
-      paddingTop: '1vh',
-      margin: 'auto',
-      marginTop: '10vh',
-      width: '25vw',
-      height: '55vh',
+      padding: '1vh',
       boxShadow: '1px 1px 3px rgb(97, 96, 96)'
     },
     input: {
@@ -88,54 +87,54 @@ class ComponentName extends Component {
 
         return (
           <Fragment>
+            <Grid className={classes.root} item xs={12}>
               <Card id="operations-card" className={classes.card}>
-                <Grid item xs={12} container justify='center' alignItems='center' direction='column'>
-                  <CardHeader 
-                    className={classes.cardElem} 
-                    color="inherit" 
-                    title="Operation"
-                    subheader='Please fill your operation details here'
-                  />
-                  <CardContent className={classes.cardElem}>
-                      <TextField 
-                        className={classes.input} 
-                        type="number"  
-                        name="amount" 
-                        value={this.state.amount} 
-                        onChange={this.handleChange} 
-                        placeholder='Amount...'
-                      />
-                  </CardContent>
-                  <CardContent className={classes.cardElem}>
-                      <TextField 
-                        className={classes.input} 
-                        type="text" 
-                        name="vendor" 
-                        value={this.state.vendor} 
-                        onChange={this.handleChange} 
-                        placeholder='Vendor...'
-                      />
-                  </CardContent>
-                  <CardContent className={classes.cardElem}>
-                      <TextField 
+                <CardHeader 
+                  className={classes.cardElem} 
+                  color="inherit" 
+                  title="Operation"
+                  subheader='Please fill your operation details here'
+                />
+                <CardContent className={classes.cardElem}>
+                    <TextField 
+                      className={classes.input} 
+                      type="number"  
+                      name="amount" 
+                      value={this.state.amount} 
+                      onChange={this.handleChange} 
+                      placeholder='Amount...'
+                    />
+                </CardContent>
+                <CardContent className={classes.cardElem}>
+                    <TextField 
                       className={classes.input} 
                       type="text" 
-                      name="category" 
-                      value={this.state.category} 
+                      name="vendor" 
+                      value={this.state.vendor} 
                       onChange={this.handleChange} 
-                      placeholder='Category...'
+                      placeholder='Vendor...'
                     />
-                  </CardContent>
-                  <CardActions id="operations-buttons" className={classes.cardActions}>
-                      <Button className={classes.buttons} variant="contained" color="primary" onClick={this.handleClickOpen}>
-                          Deposit
-                      </Button>
-                      <Button id="withdraw-button" className={classes.buttons} variant="contained" onClick={this.handleClickOpen}>
-                          Withdraw
-                      </Button>
-                  </CardActions>
-                </Grid>
+                </CardContent>
+                <CardContent className={classes.cardElem}>
+                    <TextField 
+                    className={classes.input} 
+                    type="text" 
+                    name="category" 
+                    value={this.state.category} 
+                    onChange={this.handleChange} 
+                    placeholder='Category...'
+                  />
+                </CardContent>
+                <CardActions id="operations-buttons" className={classes.cardActions}>
+                    <Button className={classes.buttons} variant="contained" color="primary" onClick={this.handleClickOpen}>
+                        Deposit
+                    </Button>
+                    <Button id="withdraw-button" className={classes.buttons} variant="contained" onClick={this.handleClickOpen}>
+                        Withdraw
+                    </Button>
+                </CardActions>
               </Card>
+            </Grid>
               
               <Dialog
               open={this.state.open}

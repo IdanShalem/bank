@@ -6,7 +6,8 @@ import { ChevronLeft as ChevronLeftIcon,
     ImportExport as ImportExportIcon,
     PieChart as PieChartIcon,
     ExitToApp as ExitToAppIcon,
-    Settings as SettingsIcon} from '@material-ui/icons';
+    Settings as SettingsIcon,
+    Home as HomeIcon} from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
@@ -53,6 +54,14 @@ class Menu extends Component {
               </div>
               <Divider />
                 <List>
+                <Link to="/">
+                    <ListItem button key={'Home'} onClick={this.handleMenu}>
+                      <ListItemIcon>
+                        <HomeIcon/>
+                      </ListItemIcon>
+                      <ListItemText primary={'Home'} />
+                    </ListItem>
+                  </Link>
                   <Link to="/operations">
                     <ListItem button key={'Operations'} onClick={this.handleMenu}>
                       <ListItemIcon>

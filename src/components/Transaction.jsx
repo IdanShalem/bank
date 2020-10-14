@@ -41,7 +41,7 @@ class Transaction extends Component {
         return (
             <Grid 
                 item 
-                xs={6} 
+                xs={10} md={6} 
                 className={classes.cardContainer}
                 container
             >

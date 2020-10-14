@@ -17,7 +17,7 @@ const theme = createMuiTheme({
         MuiAccordionSummary: {
         content: {
           display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)'
+          gridTemplateColumns: '50% 50%'
         }
       },
     },
@@ -25,17 +25,14 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
     container: {
-        marginTop: '20px'
+        marginTop: '20px',
+        width: '100%'
     },
     accordion: {
-        width: '30vw',
-        margin: '10px',
         padding: '2px',
-        borderRadius: '10px'
     },
     summary: {
-        backgroundColor: '#bbdefb',
-        borderRadius: '10px'
+        backgroundColor: '#caf0f8',
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -45,6 +42,7 @@ const styles = theme => ({
       secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
+        justifySelf: 'start'
       },
       details: {
           backgroundColor: 'white'
@@ -73,7 +71,7 @@ class Breakdown extends Component {
 
         return (
             <ThemeProvider theme={theme}>
-                <Grid item xs={8} className={classes.container}>
+                <Grid item xs={10} md={4} className={classes.container}>
                     {Object.keys(allTransactions).map(c => 
                         <Accordion className={classes.accordion}>
                             <AccordionSummary

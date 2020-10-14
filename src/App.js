@@ -67,7 +67,7 @@ class App extends Component {
 
       return (
         <Router>
-          <Grid container className='App'>
+          <Grid container className='App' >
 
             <Grid item xs={12} className={classes.head} container>
               <Header handleMenu={this.handleMenu}/>
