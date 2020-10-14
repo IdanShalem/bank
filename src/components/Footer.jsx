@@ -34,8 +34,16 @@ class Footer extends Component {
             <ThemeProvider theme={theme}>
               <AppBar className={classes.footer} position="fixed" color="secondary">
                   <Toolbar>
-                      <Typography variant="h6" color="inherit" >
-                        Balance: $ {balance}
+                      <Typography 
+                        variant="h6" 
+                        color="inherit"
+                      >
+                        Balance:&ensp;
+                        <span 
+                          style={{color: balance > 0 ? 'green' : 'red'}}
+                        >
+                            $ {balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        </span>
                       </Typography>
                   </Toolbar>
               </AppBar>

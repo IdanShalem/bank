@@ -58,7 +58,7 @@ class App extends Component {
   getBalance = () => {
     let sum = 0
     this.state.transactions.forEach(t => sum += t.amount)
-    return sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return sum
   }
 
   render() {

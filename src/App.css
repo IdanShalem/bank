@@ -14,33 +14,3 @@ a {
 #withdraw-button:hover {
   background-color:rgb(252, 246, 247)
 }
-
-/* #transactions-container{
-  height: 80vh;
-  margin-bottom: 5vh;
-} */
-
-/* .transaction-card {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 1vh;
-  align-items: center;
-  font-weight: 450;
-  justify-items: center;
-}
-
-
-
-#operations-card {
-  padding-top: 1vh;
-  margin: auto;
-  margin-top: 10vh;
-  width: 20vw;
-  height: 50vh;
-  box-shadow: 1px 1px 3px rgb(97, 96, 96);
-  display: grid;
-}
-
-
-
- */
