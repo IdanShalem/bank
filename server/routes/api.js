@@ -4,7 +4,13 @@ const   express     = require('express'),
 
 
 router.get('/transactions' , function(req, res) {
-    Transaction.find({}).then(t => res.send(t))
+    Transaction.find({})
+        .sort('date')
+        .exec(
+            function(err, transactions) { 
+                res.send(transactions) 
+            }
+        )
 })
 
 router.post('/transaction', async function(req, res) {

@@ -51,6 +51,14 @@ const styles = theme => ({
 
 class Breakdown extends Component {
 
+    dateFormat = (date) => {
+        const d = new Date(date)
+        var year = d.getFullYear();
+        var month = ("0" + (d.getMonth() + 1)).slice(-2);
+        var day = ("0" + d.getDate()).slice(-2);
+        return `${day}-${month}-${year}`
+    }
+
     sumTransactions = () => {
         const allTransactions = {}
         this.props.transactions.forEach(t => {
@@ -89,12 +97,17 @@ class Breakdown extends Component {
                                         .filter(t => t.category === c)
                                         .map(t => 
                                             <Grid item xs={12} container align='start'>
-                                                <Grid item xs={6}>
+                                                <Grid item xs={5}>
                                                     <Typography variant="body2" component='span' color="textSecondary">
                                                         {t.vendor} 
                                                     </Typography>
                                                 </Grid>
-                                                <Grid item xs={6}>
+                                                <Grid item xs={5}>
+                                                    <Typography variant="body2" component='span' color="textSecondary">
+                                                        {this.dateFormat(t.date)} 
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid item xs={2}>
                                                     <Typography variant="body2" component='span' color="textSecondary">
                                                         $ {t.amount} 
                                                     </Typography>

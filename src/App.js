@@ -27,19 +27,34 @@ class App extends Component {
     super()
     this.state = {
       transactions: [],
+      years: this.genreateYearsArr(),
+      year: '',
+      month: '',
       open: false
     }
   }
   
-  getAllTransactions() { return axios.get('http://localhost:3001/transactions') }
+  genreateYearsArr = () => {
+    const currentYear = new Date().getFullYear()
+    const years = []
+    for(let i = 1; i <= 5; i++)  {
+      years.push(currentYear + i)
+      years.push(currentYear - i)
+    }
+    years.sort((a, b) => a - b)
+    return years
+  }
+
+  getAllTransactions = () => axios.get('http://localhost:3001/transactions') 
+  
   
   componentDidMount= async () => {
     const transactions = await this.getAllTransactions()
     this.setState({transactions: transactions.data})
   }
   
-  handleTransaction = async (amount, vendor, category) => {
-    const newTrans = {amount, vendor, category}
+  handleTransaction = async (amount, vendor, category, date) => {
+    const newTrans = {amount, vendor, category, date}
     await axios.post(`http://localhost:3001/transaction`, newTrans)
     const transactions = await this.getAllTransactions()
     this.setState({transactions: transactions.data})

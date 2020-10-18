@@ -33,6 +33,14 @@ class Transaction extends Component {
         this.props.handleDeleteTransaction(this.props.transaction._id)
     }
 
+    dateFormat = (date) => {
+        const d = new Date(date)
+        var year = d.getFullYear();
+        var month = ("0" + (d.getMonth() + 1)).slice(-2);
+        var day = ("0" + d.getDate()).slice(-2);
+        return `${day}-${month}-${year}`
+    }
+
     render() {
 
         const { classes } = this.props
@@ -41,7 +49,7 @@ class Transaction extends Component {
         return (
             <Grid 
                 item 
-                xs={10} md={6} 
+                xs={11} md={7} 
                 className={classes.cardContainer}
                 container
             >
@@ -52,7 +60,7 @@ class Transaction extends Component {
                         alignItems='center'
                         container
                     >
-                        <Grid item xs={3} >
+                        <Grid item xs={1} >
                             <IconButton aria-label="Delete" onClick={this.handleDeleteTransaction}>
                                 <DeleteIcon />
                             </IconButton>
@@ -68,6 +76,11 @@ class Transaction extends Component {
                             </Typography>
                         </Grid>
                         <Grid item xs={3} >
+                            <Typography variant="subtitle1" color="textSecondary" >
+                                {this.dateFormat(t.date)} 
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2} >
                             <Typography variant="body1">
                                 $ {t.amount.toString().replace('-','')} 
                             </Typography>

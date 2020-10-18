@@ -6,7 +6,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -17,7 +16,10 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = {
     root: {
-      marginTop: '30px'
+      marginTop: '40px',
+      ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+        marginTop: '5px'
+      }
     },
     card: {
       padding: '1vh',
@@ -45,6 +47,7 @@ class ComponentName extends Component {
             amount: '',
             vendor: '',
             category: '',
+            date: '',
             open: false,
             action: '',
             done: false
@@ -52,7 +55,7 @@ class ComponentName extends Component {
     }
 
     handleClickOpen = (e) => {
-      if(this.state.amount && this.state.vendor && this.state.category) {
+      if(this.state.amount && this.state.vendor && this.state.category && this.state.date) {
         this.setState({ open: true , action: e.target.innerHTML})
       } else {
         alert('Some of the areas are blank!')
@@ -78,7 +81,7 @@ class ComponentName extends Component {
       } 
       const   vendor      = this.captilizeString(this.state.vendor),
               category    = this.captilizeString(this.state.category)
-      this.props.handleTransaction(amount, vendor, category)
+      this.props.handleTransaction(amount, vendor, category, this.state.date)
       this.setState({ done: true })
     }
 
@@ -123,6 +126,14 @@ class ComponentName extends Component {
                     value={this.state.category} 
                     onChange={this.handleChange} 
                     placeholder='Category...'
+                  />
+                </CardContent>
+                <CardContent className={classes.cardElem}>
+                  <TextField className={classes.input} 
+                    type='date' 
+                    name="date" 
+                    value={this.state.date} 
+                    onChange={this.handleChange} 
                   />
                 </CardContent>
                 <CardActions id="operations-buttons" className={classes.cardActions}>
