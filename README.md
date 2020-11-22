@@ -1,6 +1,6 @@
 # BANK APP
 
-Bank app is an appliction wich allow users to track over their transactions and shows summary of each category. The user inserts each transaction for withdraws and deposits.
+Bank app is an appliction wich allow users to track over their transactions and shows summary of each category. The user inserts each transaction for withdraws and deposits. The app is responsive for mobile and desktop.
 
 ## Running the project:
 1. Clone this repository into a local directory.
