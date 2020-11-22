@@ -27,7 +27,7 @@ const styles = theme => ({
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
     }
-  });
+  })
 
 class Menu extends Component {
 

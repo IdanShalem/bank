@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
 import Transactions from './components/Transactions'
 import Operations from './components/Operations'
 import Header from './components/Header'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
-import './App.css';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Breakdown from './components/Breakdown';
+import Breakdown from './components/Breakdown'
+import { withStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import './App.css'
 
-const axios = require('axios')
+import axios from 'axios'
 
 const styles = theme => ({
   head: {
@@ -45,7 +45,7 @@ class App extends Component {
     return years
   }
 
-  getAllTransactions = () => axios.get('http://localhost:3001/transactions') 
+  getAllTransactions = () => axios.get('http://localhost:3001/transaction/allTransactions') 
   
   
   componentDidMount= async () => {
@@ -55,14 +55,12 @@ class App extends Component {
   
   handleTransaction = async (amount, vendor, category, date) => {
     const newTrans = {amount, vendor, category, date}
-    await axios.post(`http://localhost:3001/transaction`, newTrans)
-    const transactions = await this.getAllTransactions()
+    const transactions = await axios.post(`http://localhost:3001/transaction/expense`, newTrans)
     this.setState({transactions: transactions.data})
   }
   
   handleDeleteTransaction = async (transactionId) => {
-    await axios.delete(`http://localhost:3001/transaction/${transactionId}`)
-    const transactions = await this.getAllTransactions()
+    const transactions = await axios.delete(`http://localhost:3001/transaction/${transactionId}`)
     this.setState({transactions: transactions.data})
   }  
 
@@ -71,9 +69,8 @@ class App extends Component {
   };
 
   getBalance = () => {
-    let sum = 0
-    this.state.transactions.forEach(t => sum += t.amount)
-    return sum
+    const { transactions } = this.state
+    return transactions.reduce((a, b) => a + b.amount, 0)
   }
 
   render() {

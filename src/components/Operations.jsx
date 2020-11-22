@@ -17,7 +17,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = {
     root: {
       marginTop: '40px',
-      ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+      ['@media (max-width:780px)']: { 
         marginTop: '5px'
       }
     },
@@ -55,7 +55,8 @@ class ComponentName extends Component {
     }
 
     handleClickOpen = (e) => {
-      if(this.state.amount && this.state.vendor && this.state.category && this.state.date) {
+      const { amount, vendor, category, date } = this.state
+      if(amount && vendor && category && date) {
         this.setState({ open: true , action: e.target.innerHTML})
       } else {
         alert('Some of the areas are blank!')
@@ -75,13 +76,14 @@ class ComponentName extends Component {
     captilizeString = (str) => str[0].toUpperCase() + str.slice(1).toLowerCase()
 
     handleTransaction = () => {
-      let amount = parseInt(this.state.amount)
-      if(this.state.action === 'Withdraw') {
-          amount *= -1
+      const { amount, vendor, category, date, action } = this.state
+      let numAmount = parseInt(amount)
+      if(action === 'Withdraw') {
+        numAmount *= -1
       } 
-      const   vendor      = this.captilizeString(this.state.vendor),
-              category    = this.captilizeString(this.state.category)
-      this.props.handleTransaction(amount, vendor, category, this.state.date)
+      const   captialVendor      = this.captilizeString(vendor),
+              captialCategory    = this.captilizeString(category)
+      this.props.handleTransaction(numAmount, captialVendor, captialCategory, date)
       this.setState({ done: true })
     }
 

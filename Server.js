@@ -1,11 +1,9 @@
 const   express     = require('express'),
         app         = express(),
-        port        = 3001,
+        port        = process.env.PORT || 3001,
         mongoose    = require('mongoose'),
-        axios       = require('axios'),
-        path        = require('path'),
-        api         = require('./server/routes/api')
-
+        transaction = require('./server/routes/Transaction')
+        
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/TransactionsDB')
@@ -17,6 +15,7 @@ app.use(function (req, res, next) {
 
     next()
 })
-app.use('/', api)
+
+app.use('/transaction', transaction)
 
 app.listen(port, () => console.log('server is up'))

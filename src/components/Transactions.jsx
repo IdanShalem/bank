@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import Transaction from './Transaction'
-import Grid from '@material-ui/core/Grid';
 
 class Transactions extends Component {
 
